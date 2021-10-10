@@ -1,10 +1,6 @@
-# Server CheatSheet
+# Listafunkciók
 
-## Chapter 1
-
-request params -
-
-array functions - Listafunckiok :
+## Map
 
 A map listafunkció, átfut mindegyik elemen és opcionálissan meg is változtatja
 
@@ -20,6 +16,8 @@ return x+1
 // map = [0,3,4]
 ```
 
+## Find
+
 A find listafunkció, átfut minden elemen és visszahozza az elemet amely a kondicióval igaz lesz
 Visszahoz egy objektumot = {}/adat
 
@@ -30,6 +28,8 @@ return x%2===0
 
 // find = 2
 ```
+
+## Filter
 
 A filter listafunkció, átfut minden elemen és visszahozza az elemeket amelyek a kondicióval igazak lesznek
 Visszahoz egy listát = []
