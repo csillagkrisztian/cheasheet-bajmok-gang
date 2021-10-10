@@ -16,6 +16,8 @@ return x+1
 // map = [0,3,4]
 ```
 
+---
+
 ## Find
 
 A find listafunkció, átfut minden elemen és visszahozza az elemet amely a kondicióval igaz lesz
@@ -28,6 +30,8 @@ return x%2===0
 
 // find = 2
 ```
+
+---
 
 ## Filter
 

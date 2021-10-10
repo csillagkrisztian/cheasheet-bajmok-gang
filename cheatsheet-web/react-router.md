@@ -52,7 +52,8 @@ return (
 A Switch komponens teszi lehetővé, hogy tudjunk komponenseket válogatni egy bizonyos térben. A Switch nem kötelező, hogy az egész oldalat elfoglalja, tehát fent hagyhatunk vagy lent valamit minden oldalon.
 
 Példa: A facebook fenti sora, sosem változik.
-![](../images/fb.png)
+
+> ![](../képek/fb.png)
 
 ```
 function Facebook() {
