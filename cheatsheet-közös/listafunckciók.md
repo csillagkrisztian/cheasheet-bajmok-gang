@@ -45,3 +45,9 @@ return x%2===0
 
 // filter = [2,4]
 ```
+
+
+komponens argumentum ha van ha nincs
+flexbox
+bootstrap grid
+
