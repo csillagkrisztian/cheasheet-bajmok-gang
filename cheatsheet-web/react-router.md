@@ -13,25 +13,23 @@ npm install react-router-dom
 ```
 
 ---
-
-## Használat
-
-### Importálás
+## Importálás
 
 ```
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  useParams
 } from "react-router-dom";
 ```
 
 ---
 
-### Router
+## Router
 
-A Router komponensnek az a szerepe, hogy lehetővé tegye az oldalak váltogatását a Reactben. Mindig legyen benne az egész App.js-nek a html-je
+A Router komponensnek az a szerepe, hogy lehetővé tegye az oldalak váltogatását a Reactben. Mindig legyen benne az egész App.js-nek a html-je.
 
 ```
 function App() {
@@ -47,9 +45,100 @@ return (
 
 ---
 
-### Switch
+## Switch
 
-A Switch komponens teszi lehetővé, hogy tudjunk komponenseket válogatni egy bizonyos térben. A Switch nem kötelező, hogy az egész oldalat elfoglalja, tehát fent hagyhatunk vagy lent valamit minden oldalon.
+A Switch komponens teszi lehetővé, hogy tudjunk komponenseket válogatni egy bizonyos térben.
+Úgy működik, hogy egyenként végig fut a Route komponenseken és összehasonlítja a böngészőbe található link-kel.
+
+Példa: A link a böngészőben itt található
+> ![](../képek/react-router-1.png)
+
+```
+<Router>
+  <Switch>
+    <Route path="/red">
+      <Red/>
+    </Route>
+    <Route path="/blue">
+      <Blue/>
+    </Route>
+    <Route path="/">
+      <Home />
+    </Route>
+  </Switch>
+</Router>
+```
+
+Mivel a link megegyezik egy Route componens path argumentumával, ezért a Red komponenst fogja kimutatni.
+
+```
+ <Router>
+      <Switch>
+      -----------------------------
+        <Route path="/red">
+          <Red/>
+        </Route>
+      -----------------------------
+        <Route path="/blue">
+          <Blue/>
+        </Route>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
+    </Router>
+```
+Ha a linket megváltoztatjuk a böngészőben, újra fentről lefelé megkeresi az azonosat.
+
+Példa: Kicserléjük, blue-ra a linket a billentyűzetünkkel.
+> ![](../képek/react-router-2.png)
+
+```
+ <Router>
+      <Switch>
+        <Route path="/red">
+          <Red/>
+        </Route>
+      -----------------------------
+        <Route path="/blue">
+          <Blue/>
+        </Route>
+      -----------------------------
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
+    </Router>
+```
+
+Abban az esetben ha a link nem egyezik meg egyik úttal sem, az alap útra tér rá.
+
+Példa: 
+![](../képek/react-router-4.png)
+![](../képek/react-router-3.png)
+
+```
+ <Router>
+      <Switch>
+        <Route path="/red">
+          <Red/>
+        </Route>
+        <Route path="/blue">
+          <Blue/>
+        </Route>
+      -----------------------------
+        <Route path="/">
+          <Home />
+        </Route>
+      -----------------------------
+      </Switch>
+    </Router>
+```
+
+---
+## A Switch további tudnivalói
+
+A Switch nem kötelező, hogy az egész oldalat elfoglalja, tehát fent hagyhatunk vagy lent valamit minden oldalon.
 
 Példa: A facebook fenti sora, sosem változik.
 
@@ -68,9 +157,37 @@ return (
 }
 ```
 
-### Route
+A Switch sorrendje mindig a hosszabbtól rövidebb link felé kötelező, hogy haladjon, mert sorban keresi az azonosságokat.
 
-A Route komponens jelképezi az egyik lapot amit változtathatunk.
+Példa: A Home a többi Route előtt.
+
+![](../képek/react-router-5.png)
+
+```
+<Router>
+  <Switch>
+  ----------------------
+    <Route path="/">
+      <Home />
+    </Route>
+  ----------------------
+    <Route path="/red">
+      <Red/>
+    </Route>
+    <Route path="/blue">
+      <Blue/>
+    </Route>
+  </Switch>
+</Router>
+```
+
+Mivel az alaplink mindig megtalálható a linkben, bármennyi adalékot hozzáadunk, ezért mindig az elsőt fogja kimutatni.
+
+
+---
+## Route
+
+A Route komponens jelképezi az egyik lapot amit elérhetünk.
 <br>
 <br>
 Fontos argumentumok:
@@ -100,9 +217,10 @@ return (
 
 ---
 
-### Link
+## Link
 
 A Link komponens egy linket készit amellyel a weboldalon belül tudunk másik oldalakra ugrándozni.
+Megváltoztatja a böngésző linkjét dinamikussan.
 <br>
 <br>
 Fontos argumentumok:
@@ -144,3 +262,89 @@ Példa: Egy lista ahol a linkek találhatók.
     </nav>
 </div>
 ```
+
+---
+
+## Paraméterek - useParams
+
+Ha ugyanazt a komponenst szeretnénk többször felhasználni, akkor szükségünk lesz egy paraméterre.
+
+```
+<Switch>
+  <Route path="/fehalsználók/:id">
+    <User/>
+  </Route>
+  <Route path="/fehalsználók">
+    <Users/>
+  </Route>
+  <Route path="/">
+    <Home/>
+  </Route>
+</Switch>
+```
+
+Példa erre, a facebook profil oldala:
+
+![](../képek/react-router-6.png)
+![](../képek/react-router-7.png)
+
+Mind a két oldal esetén ugyan az a komponens van felhasználva, csak az utolsó eleme a link-nek változik dinamikusan.
+
+Ebben az esetben használhatjuk a useParams funckiót: 
+
+```
+const User = () => {
+  const params = useParams();
+  return (...)
+}⇡ useParams értéke
+
+return (<Switch>
+  <Route path="/fehalsználók/:id">
+    <User/>
+  </Route>
+  <Route path="/fehalsználók">
+    <Users/>
+  </Route>
+  <Route path="/">
+    <Home/>
+  </Route>
+</Switch>)
+```
+
+A useParams funkció összehasonlítja a Route-nak a path-jében megadott paramétert (ebben az esetben ":id"), a böngészőben található linket, ami az első az esetben "/aleksandar.molnar.12" és összerakja ezeket egy objektumba: 
+               
+![](../képek/react-router-6.png)
+
+```
+                        ⇡ useParams értéke a linkben 
+const User = () => {
+  const params = useParams();
+  console.log(params);
+  // params = {id:"aleksandar.molnar.12"}
+  return (...)
+}
+
+return (<Switch>              ⇣ useParams kulcsa
+  <Route path="/fehalsználók/:id">
+    <User/>
+  </Route>
+  [...]
+</Switch>
+  
+```
+
+Ez az adat alapján egy jól összerakott adatbáziban már könnyen kitaláljuk kinek az adatára van szükségünk, hogy kitöltsük a weboldalat.
+
+
+```
+const User = () => {
+  const params = useParams();
+  console.log(params);
+  // params = {id:"aleksandar.molnar.12"}
+
+  const user = database.find(data => data.id === params.id);
+  return (...)
+}
+```
+
+---

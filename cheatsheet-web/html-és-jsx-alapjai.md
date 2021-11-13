@@ -106,13 +106,14 @@ Komponens definíciója:
 ```
              1
 function Komponens() {
-  2
-[...]
-return (
+    2
+  [...]
+  return (
       3
     <div>
       [...]
     </div>
+  )
 }
 ```
 
@@ -120,20 +121,72 @@ return (
 2. A kód amit a komponensen belül előkészíti a látható adatot
 3. A HTML kód amit a weboldalunkon látható
 
-### _Fontos tudnivalók_
+### _A React Parancsolatai_
 
-- React esetén minden komponensben a JSX a **_return_** funkcióval küldhető a weboldalunknak.
+1. A komponensek neve **_MINDIG NAGY BETŰVEL KEZDŐDIK_**!
 
-- A return funkcióban felhasználhatunk bármilyen HTML elemet.
+2. React esetén minden komponensben a JSX a **_return_** funkcióval küldhető a weboldalunknak.
 
-- A return funkcióban felhasználhatunk JavaScriptet a {} jelek segítségével
+3. A return funkcióban felhasználhatunk bármilyen HTML elemet.
+
+4. A return funkcióban felhasználhatunk JavaScriptet a {} jelek segítségével.
+
+5. A return funkcióban bármelyik más komponenseinket is felhasználhatjuk
+
+4-es Példa:
 
 ```
 function Komponens() {
-const szöveg
-return (
-    <div>
-      [...]
-    </div>
+  const text = "Bazdmeg magad köcsög";
+  const blue = { color: "blue" };
+  return (
+    <p style={blue}>{ text }</p>
+  )
 }
 ```
+
+Weboldal:
+
+---
+
+## <p style="color:blue;">Bazdmeg magad köcsög</p>
+
+---
+
+<br>
+
+Példa:
+
+```
+function Title() {
+  return (
+    <h1> Valami </h1>
+  )
+}
+
+function Description() {
+  return (
+    <p> Valami más </p>
+  )
+}
+
+function App() {
+  return (
+      <div>
+        <Title/>
+        <Description/>
+        <Description/>
+      </div>
+  )
+}
+```
+
+Weboldal:
+
+---
+
+<h2> Valami </h2>
+<p> Valami más </p>
+<p> Valami más </p>
+
+---
