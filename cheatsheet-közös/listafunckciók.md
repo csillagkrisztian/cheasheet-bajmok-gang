@@ -2,7 +2,7 @@
 
 ## Map
 
-A map listafunkció, átfut mindegyik elemen és opcionálissan meg is változtatja
+A ```map listafunkció```, átfut mindegyik elemen és opcionálissan meg is változtatja
 
 ```
 const map = [1,2,3].map( x=>{
@@ -20,7 +20,7 @@ return x+1
 
 ## Find
 
-A find listafunkció, átfut minden elemen és visszahozza az elemet amely a kondicióval igaz lesz
+A ```find listafunkció```, átfut minden elemen és visszahozza az elemet amely a kondicióval igaz lesz
 Visszahoz egy objektumot = {}/adat
 
 ```
@@ -35,7 +35,7 @@ return x%2===0
 
 ## Filter
 
-A filter listafunkció, átfut minden elemen és visszahozza az elemeket amelyek a kondicióval igazak lesznek
+A ```filter listafunkció```, átfut minden elemen és visszahozza az elemeket amelyek a kondicióval igazak lesznek
 Visszahoz egy listát = []
 
 ```
@@ -46,8 +46,4 @@ return x%2===0
 // filter = [2,4]
 ```
 
-
-komponens argumentum ha van ha nincs
-flexbox
-bootstrap grid
 

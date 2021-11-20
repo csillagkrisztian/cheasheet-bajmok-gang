@@ -1,6 +1,6 @@
 # Web rövidítések
 
-- rfc - létrehoz egy egyszerű funkció alapú komponenst
+- ```rfc``` - létrehoz egy egyszerű funkció alapú komponenst
 
 ```
 import React from 'react'
@@ -14,7 +14,7 @@ export default function [A fájl neve, nagy kezdőbetűvel]() {
 }
 ```
 
-- clg - kiírja a console.log parancsot
+- ```clg``` - kiírja a ```console.log``` funkciót
 
 
 ```

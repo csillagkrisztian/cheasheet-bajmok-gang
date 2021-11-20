@@ -2,7 +2,7 @@
 
 ## Objektum dekonstrukció
 
-Minden objektum "entry"-k ből áll, és mindegyik "entry"-nek van egy kulcsa és egy értéke.
+Minden ```objektum ``` ```entry```-k ből áll, és mindegyik ```entry```-nek van egy kulcsa és egy értéke.
 
 ```
 const country = {
@@ -24,7 +24,7 @@ console.log(countryPopulation);
 // 1305481
 ```
 
-Viszont, ha az össze kulcsot ki szeretnénk venni, ez sok kóddal járhat, pláne objektumokban, amiben van több mint 5 "entry".
+Viszont, ha az össze kulcsot ki szeretnénk venni, ez sok kóddal járhat, pláne ```objektum```-okban, amiben van több mint 5 ```entry```.
 
 ```
 const country = {
@@ -44,8 +44,8 @@ const countrylanguages = country.languages;
 const countryGeoLocation = country.geoLocation;
 ```
 
-És persze ez még egy kisebb objektumnak is számítható.
-Ahhoz hogy ezt meggátoljuk, dekonstruktáljuk az objektum kulcsait és saját változókká alakítjuk őket.
+És persze ez még egy kisebb ```objektum```-nak is számítható.
+Ahhoz hogy ezt meggátoljuk, ```dekonstruktáljuk az objektum kulcsait``` és saját változókká alakítjuk őket.
 
 ```
 const country = {
@@ -62,7 +62,7 @@ const { name, population, flag, capital, languages, geoLocation } = country;
 
 ## Objektum dekonstrukció - érdekességek
 
-Mi van ha az objektumnak van egy objektum adata, azt ki tudom dekonstruktálni?
+Mi van ha az ```objektum```-nak van egy ```objektum``` adata, azt ki tudom ```dekonstruktálni```?
 
 ```
 const country = {
@@ -79,7 +79,7 @@ const { mainLanguage, secondaryLanguage, minorityLanguages } = languages;
 
 ```
 
-Ha a map listafunkcióban tudom, hogy az egyik elem objektum, akkor tudok ott is dekonstruktálni?
+Ha a ```map``` listafunkcióban tudom, hogy az egyik elem ```objektum```, akkor tudok ott is ```dekonstruktálni```?
 
 ```
 const countries = [
@@ -107,8 +107,106 @@ const countryLanguagesDestructured = countries.map(({languages})=> {
     return languages;
 });
 
-const coutnryLanguagesDestructuredAutoReturn = countries.map(({ languages }) => languages);
+const countryLanguagesDestructuredAutoReturn = countries.map(({ languages }) => languages);
+
 
 // Mind a három lista adata megegyezik.
+console.log(countryLanguages);
+console.log(countryLanguagesDestructured);
+console.log(countryLanguagesDestructuredAutoReturn);
 
 ```
+
+---
+
+## ... vagy Spread Operator- avagy adat szórás listában és objektumban
+
+Ha össze szeretnénk ```listákat``` kombinálni, erre van egy egyszerű megoldás. A ```...``` operátor.
+Ez a beépített funckió lehetővé teszi, hogy kiszedjuk listáknak és objektumoknak az ```entry``` adatait és átszórjuk másik ```listába``` vagy ```objektum```-ba.
+
+Példa: Lista
+
+```
+const patients = ["Jani", "Mari"];
+const nurses = ["Sladjana", "Andrea"];
+const doctor = "Dr. Marko";
+
+const hospitalResidents = [...patients, ...nurses, doctor];
+console.log(hospitalResidents);
+// ["Jani", "Mari", "Sladjana", "Andrea", "Dr. Marko"]
+```
+
+Példa: Objektum
+```
+const person = {
+    id:578911,
+    name:"Milos",
+    age:'29',
+}
+
+const diagnosys = {
+    disease: "Megfázás",
+    cameToHospital: "2021-11-09",
+    medicine: null,
+}
+
+const patient = {
+    ...person,
+    ...diagnosys
+}
+console.log(patient);
+// 
+{
+    id:578911
+    name:"Milos",
+    age:'29',
+    disease: "Megfázás",
+    cameToHospital: "2021-11-09",
+    medicine: null,
+}
+```
+
+## Spread édekességek    
+
+Egy ```objektum``` elemeit, nem tudjuk egy ```listába``` beleszórni.
+
+```
+const user = {
+    name:"Daniel",
+    age:21,
+}
+
+const patients = [
+    {
+        name:"Sandra",
+        age:48,
+    },
+    {
+        name:"Alex",
+        age:16,
+    }
+];
+
+const newPatients = [...patients,...user];
+console.log(newPatients);
+// ERROR
+
+```
+
+A problémát képzeljük el másképp. És rájövünk, hogy mi az ```error```.
+
+```
+const newPatients = [...patients,...user];
+```
+A ```...``` operátor megváltoztatja és így fog kinézni
+
+```
+const newPatients = [ { name:"Sandra", age:48 }, { name:"Alex", age:16 }, name:"Daniel", age:21 ];
+console.log(newPatients);
+// ERROR
+```
+Mivel nem tartalmazhat ```kulcs:adat``` párokat a ```lista```, ezért összetörik a kód.
+
+
+
+

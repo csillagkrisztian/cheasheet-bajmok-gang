@@ -29,7 +29,7 @@ import {
 
 ## Router
 
-A Router komponensnek az a szerepe, hogy lehetővé tegye az oldalak váltogatását a Reactben. Mindig legyen benne az egész App.js-nek a html-je.
+A ```Router``` komponensnek az a szerepe, hogy lehetővé tegye az oldalak váltogatását a ```React```-ban. Mindig legyen benne az egész ```App.js```-nek a ```JSX```-je.
 
 ```
 function App() {
@@ -47,10 +47,10 @@ return (
 
 ## Switch
 
-A Switch komponens teszi lehetővé, hogy tudjunk komponenseket válogatni egy bizonyos térben.
-Úgy működik, hogy egyenként végig fut a Route komponenseken és összehasonlítja a böngészőbe található link-kel.
+A ```Switch``` komponens teszi lehetővé, hogy tudjunk komponenseket válogatni egy bizonyos térben.
+Úgy működik, hogy egyenként végig fut a ```Route``` komponenseken és összehasonlítja a böngészőbe található ```link```-kel.
 
-Példa: A link a böngészőben itt található
+Példa: A ```link``` a böngészőben itt található
 > ![](../képek/react-router-1.png)
 
 ```
@@ -69,7 +69,7 @@ Példa: A link a böngészőben itt található
 </Router>
 ```
 
-Mivel a link megegyezik egy Route componens path argumentumával, ezért a Red komponenst fogja kimutatni.
+Mivel a ```link``` megegyezik egy ```Route``` componens ```path``` argumentumával, ezért a ```Red``` komponenst fogja kimutatni.
 
 ```
  <Router>
@@ -88,7 +88,7 @@ Mivel a link megegyezik egy Route componens path argumentumával, ezért a Red k
       </Switch>
     </Router>
 ```
-Ha a linket megváltoztatjuk a böngészőben, újra fentről lefelé megkeresi az azonosat.
+Ha a ```link```-et megváltoztatjuk a böngészőben, újra fentről lefelé megkeresi az azonosat.
 
 Példa: Kicserléjük, blue-ra a linket a billentyűzetünkkel.
 > ![](../képek/react-router-2.png)
@@ -111,9 +111,10 @@ Példa: Kicserléjük, blue-ra a linket a billentyűzetünkkel.
     </Router>
 ```
 
-Abban az esetben ha a link nem egyezik meg egyik úttal sem, az alap útra tér rá.
+Abban az esetben ha a ```link``` nem egyezik meg egyik úttal sem, az alap útra tér rá.
 
 Példa: 
+
 ![](../képek/react-router-4.png)
 ![](../képek/react-router-3.png)
 
@@ -138,7 +139,7 @@ Példa:
 ---
 ## A Switch további tudnivalói
 
-A Switch nem kötelező, hogy az egész oldalat elfoglalja, tehát fent hagyhatunk vagy lent valamit minden oldalon.
+A ```Switch``` nem kötelező, hogy az egész oldalat elfoglalja, tehát fent hagyhatunk vagy lent valamit minden oldalon.
 
 Példa: A facebook fenti sora, sosem változik.
 
@@ -157,9 +158,9 @@ return (
 }
 ```
 
-A Switch sorrendje mindig a hosszabbtól rövidebb link felé kötelező, hogy haladjon, mert sorban keresi az azonosságokat.
+A ```Switch``` sorrendje mindig a hosszabbtól rövidebb ```link``` felé kötelező, hogy haladjon, mert sorban keresi az azonosságokat.
 
-Példa: A Home a többi Route előtt.
+Példa: A ```Home``` a többi ```Route``` előtt.
 
 ![](../képek/react-router-5.png)
 
@@ -181,19 +182,19 @@ Példa: A Home a többi Route előtt.
 </Router>
 ```
 
-Mivel az alaplink mindig megtalálható a linkben, bármennyi adalékot hozzáadunk, ezért mindig az elsőt fogja kimutatni.
+Mivel az ```alaplink``` mindig megtalálható a ```link```-ben, bármennyi adalékot hozzáadunk, ezért mindig az elsőt fogja kimutatni.
 
 
 ---
 ## Route
 
-A Route komponens jelképezi az egyik lapot amit elérhetünk.
+A ```Route``` komponens jelképezi az egyik lapot amit elérhetünk.
 <br>
 <br>
 Fontos argumentumok:
 
-- path - "/" - string - a link amellyel a felhasználó a bizonyos oldalat eléri
-- mi megy bele? - < Home /> - komponens amelyet az oldal mutatni fog
+- ```path``` - ```"/"``` - string - a link amellyel a felhasználó a bizonyos oldalat eléri
+- ```gyermekek``` -``` < Home /> ``` - komponens amelyet az oldal mutatni fog
 
 ```
 function App() {
@@ -219,15 +220,15 @@ return (
 
 ## Link
 
-A Link komponens egy linket készit amellyel a weboldalon belül tudunk másik oldalakra ugrándozni.
-Megváltoztatja a böngésző linkjét dinamikussan.
+A ```Link``` komponens egy ```link```-et készit amellyel a weboldalon belül tudunk másik oldalakra ugrándozni.
+Megváltoztatja a böngésző ```link```-jét dinamikussan.
 <br>
 <br>
 Fontos argumentumok:
 
-- to - "/" - string - a link ahova szeretnénk menni
+- ```to``` - ```/``` - string - a ```link``` ahova szeretnénk menni
 
-Példa: Egy lista ahol a linkek találhatók.
+Példa: Egy lista ahol a ```link```-ek találhatók.
 
 <div>
     <nav>
@@ -267,7 +268,7 @@ Példa: Egy lista ahol a linkek találhatók.
 
 ## Paraméterek - useParams
 
-Ha ugyanazt a komponenst szeretnénk többször felhasználni, akkor szükségünk lesz egy paraméterre.
+Ha ugyanazt a komponenst szeretnénk többször felhasználni, akkor szükségünk lesz egy ```paraméter```-re.
 
 ```
 <Switch>
@@ -290,7 +291,7 @@ Példa erre, a facebook profil oldala:
 
 Mind a két oldal esetén ugyan az a komponens van felhasználva, csak az utolsó eleme a link-nek változik dinamikusan.
 
-Ebben az esetben használhatjuk a useParams funckiót: 
+Ebben az esetben használhatjuk a ```useParams``` ```hook```-ot: 
 
 ```
 const User = () => {
@@ -311,7 +312,7 @@ return (<Switch>
 </Switch>)
 ```
 
-A useParams funkció összehasonlítja a Route-nak a path-jében megadott paramétert (ebben az esetben ":id"), a böngészőben található linket, ami az első az esetben "/aleksandar.molnar.12" és összerakja ezeket egy objektumba: 
+A ```useParams``` ```hook``` összehasonlítja a ```Route```-nak a ```path```-jében megadott paramétert (ebben az esetben ```:id```), a böngészőben található ```link-```et, ami az első az esetben ```/aleksandar.molnar.12``` és összerakja ezeket egy objektumba: 
                
 ![](../képek/react-router-6.png)
 
